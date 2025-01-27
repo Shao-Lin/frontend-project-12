@@ -9,7 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "npx start-server -s ./dist",
-    "serve": "vite preview"
+    "serve": "vite preview",
+    "preinstall": "npm install vite"
   },
   "dependencies": {
     "react": "^18.3.1",
