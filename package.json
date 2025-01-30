@@ -6,8 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "start-server -s ./frontend/dist",
-    "build": "npm run build --prefix frontend",
-    "dev": "vite"
+    "build": "npm run build --prefix frontend"
   },
   "author": "",
   "license": "ISC",
@@ -16,7 +15,7 @@
   ],
   "dependencies": {
     "@hexlet/chat-server": "^2.0.4",
-    "vite": "^6.0.11"
+    "react-router-dom": "^7.1.3"
   },
   "devDependencies": {
     "@eslint/create-config": "^1.0.0",
@@ -28,6 +27,7 @@
     "eslint-plugin-jsx-a11y": "^6.10.2",
     "eslint-plugin-react": "^7.37.4",
     "eslint-plugin-react-hooks": "^4.6.2",
-    "globals": "^15.14.0"
+    "globals": "^15.14.0",
+    "vite": "^6.0.11"
   }
 }
