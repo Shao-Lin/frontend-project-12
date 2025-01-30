@@ -1,0 +1,65 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+.login-box {
+  width: 40vw;
+  height: 50vh;
+  background-color: white;
+  padding: 20px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  text-align: center;
+}
+.c-button {
+  min-width: 200px;
+  font-family: inherit;
+  appearance: none;
+  border: 0;
+  border-radius: 5px;
+  background: #4676d7;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.c-button:hover {
+  background: #1d49aa;
+}
+
+.c-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 4px #cbd6ee;
+}
+.logo-container {
+  display: flex;
+  justify-content: center; /* Центровка по горизонтали */
+  align-items: center; /* Центровка по вертикали (если нужно) */
+  height: 100%; /* Задай высоту, если необходимо центрирование по всей области */
+}
+
+.logo {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  transition: transform 0.3s;
+}
+
+/* Специфичный стиль для логотипа React */
+.logo.react {
+  width: 120px; /* Увеличь размер на нужное значение */
+  height: 120px;
+  cursor: pointer;
+}
+
+.logo.react:hover {
+  transform: scale(1.1); /* Эффект увеличения при наведении */
+}
