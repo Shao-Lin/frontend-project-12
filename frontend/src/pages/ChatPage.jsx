@@ -1,18 +1,15 @@
-import { useGetChannelsQuery } from '../api/channelsApi';
-// import { useGetMessagesQuery } from '../api/messagesApi';
-
+import { BoxMessenger } from '../components/BoxMessenger';
+import { Header } from '../components/Header';
+import { ChannelsColumn } from '../components/channels/ChannelsColumn';
+import { BoxChat } from '../components/chat/BoxChat';
 export const ChatPage = () => {
-  const { data = [] } = useGetChannelsQuery();
-  //const { data: dataMessages } = useGetMessagesQuery();
-
   return (
     <>
-      <div>Eto chat</div>
-      <ul>
-        {data.map((item, index) => (
-          <li key={index}>{item}</li>
-        ))}
-      </ul>
+      <Header />
+      <BoxMessenger>
+        <ChannelsColumn />
+        <BoxChat />
+      </BoxMessenger>
     </>
   );
 };

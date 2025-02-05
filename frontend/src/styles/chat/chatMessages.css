@@ -1,0 +1,17 @@
+.chat-content {
+  flex-grow: 1; /* Растягиваем контент по высоте */
+  padding: 15px;
+  overflow-y: auto;
+  background-color: #e6edf0;
+  border-top: 1px solid #ddd;
+}
+.message {
+  padding: 10px;
+  margin: 8px 0;
+  border-radius: 5px;
+  max-width: 80%;
+  word-wrap: break-word;
+  background-color: #e6f7ff;
+  color: #000000;
+  align-self: flex-start;
+}

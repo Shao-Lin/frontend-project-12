@@ -1,0 +1,23 @@
+.channel-item {
+  padding: 10px 15px;
+  margin: 8px 0;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  color: #333;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.channel-item:hover {
+  background-color: #eef6ff;
+  transform: translateY(-2px);
+}
+
+.channel-item.active {
+  background-color: #cce4ff;
+  font-weight: bold;
+  color: #0056b3;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}

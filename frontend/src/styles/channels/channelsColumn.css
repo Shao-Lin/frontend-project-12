@@ -1,0 +1,30 @@
+/* Левая колонка для каналов */
+.channels-column {
+  flex: 1;
+  background-color: #eef6ff;
+  padding: 15px;
+  border-radius: 10px 0 0 10px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.channel-list {
+  list-style: none;
+  padding: 0;
+}
+
+.channel-list li {
+  margin: 8px 0;
+  color: #333;
+  font-size: 16px;
+}
+
+/* Правая колонка */
+
+.flex-left {
+  height: 100%; /* Растягиваем колонки по высоте */
+  padding: 10px;
+}
+
+.flex-left {
+  background: #f0f0f0;
+}

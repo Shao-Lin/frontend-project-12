@@ -1,0 +1,34 @@
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 15px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  width: calc(
+    100% + 30px
+  ); /* Растягиваем на полную ширину + компенсируем padding */
+  height: 70px;
+  margin: -15px -15px 10px 0px; /* Симметрично компенсируем отступы */
+  border-radius: 0;
+}
+
+.chat-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  flex: 1;
+}
+
+.chat-title {
+  font-size: 20px;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.chat-subtitle {
+  font-size: 14px;
+  color: #666;
+}

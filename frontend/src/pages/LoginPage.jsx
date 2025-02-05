@@ -25,6 +25,7 @@ export const LoginPage = () => {
     try {
       const { token, username } = await login(credentials).unwrap();
       dispatch(setCredentials({ username, token }));
+      console.log(`login ${localStorage.getItem('token')}`);
       navigate('/');
     } catch (err) {
       if (err.status === 401) {
