@@ -12,13 +12,18 @@ export const messagesApi = createApi({
       return headers;
     },
   }),
-  tagTypes: ['Messages'],
   endpoints: (build) => ({
     getMessages: build.query({
       query: () => `messages`,
-      providesTags: ['Messages'],
+    }),
+    addMessage: build.mutation({
+      query: (body) => ({
+        url: 'messages',
+        method: 'POST',
+        body,
+      }),
     }),
   }),
 });
 
-export const { useGetMessagesQuery } = messagesApi;
+export const { useGetMessagesQuery, useAddMessageMutation } = messagesApi;
