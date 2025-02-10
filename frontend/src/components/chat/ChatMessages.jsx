@@ -2,10 +2,12 @@ import '../../styles/chat/chatMessages.css';
 import { useGetMessagesQuery } from '../../api/messagesApi';
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { useSelector } from 'react-redux';
 
 const ChatMessages = () => {
   const { data: messages = [] } = useGetMessagesQuery();
   const [liveMessages, setLiveMessages] = useState([]);
+  const channelId = useSelector((state) => state.channel.activeChannel);
 
   useEffect(() => {
     const socket = io('ws://localhost:5002');
@@ -17,14 +19,13 @@ const ChatMessages = () => {
 
     return () => socket.disconnect();
   }, []);
-  // if (isFetching) return <p>Loading...</p>;
-  // if (error) return <p>Error loading channels</p>;
-  //console.log(messages);
-  //console.log(liveMessages);
-  console.log([...messages, ...liveMessages]);
+
+  const messagesForChannel = [...messages, ...liveMessages].filter(
+    (message) => message.channelId === channelId
+  );
   return (
     <div className="chat-content">
-      {[...messages, ...liveMessages]?.map((msg) => (
+      {messagesForChannel?.map((msg) => (
         <div key={msg.id} className="message">
           <strong>{msg.username}:</strong> {msg.body}
         </div>

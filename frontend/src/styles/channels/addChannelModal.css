@@ -1,0 +1,15 @@
+.error-message {
+  color: red;
+  font-size: 0.9rem;
+  margin-top: 4px;
+}
+.form-group {
+  margin-bottom: 1rem;
+}
+.form-control {
+  border: 1px solid #ced4da;
+  padding: 0.375rem 0.75rem;
+}
+.form-control.is-invalid {
+  border-color: red;
+}
