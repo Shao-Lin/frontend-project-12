@@ -1,10 +1,25 @@
-.channel-list {
-  list-style: none;
-  padding: 0;
+.channel-list-container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  overflow-y: hidden; /* По умолчанию скрываем прокрутку */
+  padding-right: 5px; /* Пространство для скролл-бара */
+  position: relative;
 }
 
-.channel-list li {
-  margin: 8px 0;
-  color: #333;
-  font-size: 16px;
+.channel-list-container:hover {
+  overflow-y: auto; /* Бэкап для браузеров без overlay */
+}
+
+.channel-list-container::-webkit-scrollbar {
+  width: 4px; /* Тонкая полоса прокрутки */
+}
+
+.channel-list-container::-webkit-scrollbar-thumb {
+  background-color: #8fc5ff;
+  border-radius: 5px;
+}
+
+.channel-list-container::-webkit-scrollbar-track {
+  background: transparent;
 }

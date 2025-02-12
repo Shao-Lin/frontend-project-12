@@ -5,6 +5,23 @@
   background-color: #e6edf0;
   border-top: 1px solid #ddd;
 }
+.chat-content:hover {
+  overflow-y: overlay; /* Скролл поверх содержимого (где поддерживается) */
+  scrollbar-gutter: stable;
+}
+
+.chat-content::-webkit-scrollbar {
+  width: 4px; /* Тонкая полоса прокрутки */
+}
+
+.chat-content::-webkit-scrollbar-thumb {
+  background-color: #8fc5ff;
+  border-radius: 5px;
+}
+
+.chat-content::-webkit-scrollbar-track {
+  background: transparent;
+}
 .message {
   padding: 10px;
   margin: 8px 0;
@@ -14,4 +31,9 @@
   background-color: #e6f7ff;
   color: #000000;
   align-self: flex-start;
+
+  /* Управление длинными словами и строками */
+  word-break: break-word; /* Перенос слов */
+  overflow-wrap: break-word; /* Поддержка переноса для более старых браузеров */
+  white-space: normal; /* Разрешаем перенос строк */
 }

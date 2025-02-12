@@ -30,6 +30,7 @@ const ChatInputForm = () => {
             type="text"
             placeholder="Введите сообщение..."
             className="message-input"
+            autoFocus
           />
           <button
             type="submit"

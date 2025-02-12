@@ -15,18 +15,20 @@ const ChannelsList = () => {
   };
 
   return (
-    <ul className="channel-list">
-      {dataChannels?.map((channel) => (
-        <ChannelsItem
-          key={channel.id}
-          name={channel.name}
-          isActive={activeChannel === channel.id}
-          id={channel.id}
-          changeChannel={changeChannel}
-          removable={channel.removable}
-        />
-      ))}
-    </ul>
+    <div className="channel-list-container">
+      <ul className="channel-list">
+        {dataChannels?.map((channel) => (
+          <ChannelsItem
+            key={channel.id}
+            name={channel.name}
+            isActive={activeChannel === channel.id}
+            id={channel.id}
+            changeChannel={changeChannel}
+            removable={channel.removable}
+          />
+        ))}
+      </ul>
+    </div>
   );
 };
 export { ChannelsList };
