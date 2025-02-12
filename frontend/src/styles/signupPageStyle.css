@@ -8,7 +8,7 @@
 
 .login-box {
   width: 40vw;
-  height: 50vh;
+  height: 60vh;
   background-color: white;
   padding: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
@@ -51,22 +51,4 @@
 
 .logo.react:hover {
   transform: scale(1.1); /* Эффект увеличения при наведении */
-}
-
-.login-footer {
-  margin-top: 20px;
-  padding-top: 10px;
-  border-top: 1px solid #ccc; /* Серый цвет линии */
-  color: #777; /* Серый цвет текста */
-  font-size: 14px;
-}
-
-.login-footer a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.login-footer a:hover {
-  text-decoration: underline;
 }

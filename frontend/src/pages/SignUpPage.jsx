@@ -2,54 +2,71 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Form as BootstrapForm } from 'react-bootstrap';
-import '../styles/loginPageStyle.css';
+import '../styles/signupPageStyle.css';
 import Button from 'react-bootstrap/Button';
-import mumia from '../assets/mumia.png';
-import { useLoginUserMutation } from '../api/authApi';
+import cookie from '../assets/cookie.png';
+import { useSignupUserMutation } from '../api/authApi';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slice/authSlice';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
 
-export const LoginPage = () => {
+const SignUpPage = () => {
   const dispatch = useDispatch();
-  const [login, { isLoading }] = useLoginUserMutation();
+  const [login, { isLoading }] = useSignupUserMutation();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState();
 
   const SignupSchema = Yup.object().shape({
-    username: Yup.string().required('Обязательное поле'),
-    password: Yup.string().required('Обязательное поле'),
+    username: Yup.string()
+      .required('Обязательное поле')
+      .min(3, 'От 3 до 20 символов')
+      .max(20, 'От 3 до 20 символов'),
+    password: Yup.string()
+      .required('Обязательное поле')
+      .min(6, 'Не менее 6 символов'),
+    confirmPassword: Yup.string()
+      .required('Обязательное поле')
+      .min(6, 'Не менее 6 символов'),
   });
 
-  const handleLogin = async (credentials) => {
+  const handleSignup = async (credentials) => {
+    const { username, password, confirmPassword } = credentials;
+    if (password !== confirmPassword) {
+      setLoginError('Пароли должны совпадать');
+      return;
+    }
+
     try {
-      const { token, username } = await login(credentials).unwrap();
+      const response = await login({ username, password }).unwrap();
+      const { token } = response;
       dispatch(setCredentials({ username, token }));
       console.log(`login ${localStorage.getItem('token')}`);
       navigate('/');
     } catch (err) {
-      if (err.status === 401) {
-        setLoginError('Неверные имя пользователя или пароль');
+      if (err.status === 409) {
+        setLoginError('Пользователь уже существует');
       } else {
         setLoginError('Произошла ошибка сервера');
       }
     }
   };
+
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1>Войти</h1>
+        <h1>Регистрация</h1>
         <div className="logo-container">
-          <img src={mumia} className="logo react" alt="React logo" />
+          <img src={cookie} className="logo react" alt="React logo" />
         </div>
         <Formik
           initialValues={{
             username: '',
             password: '',
+            confirmPassword: '',
           }}
           validationSchema={SignupSchema}
-          onSubmit={handleLogin}
+          onSubmit={handleSignup}
         >
           {({ errors, touched, getFieldProps }) => (
             <Form>
@@ -86,6 +103,25 @@ export const LoginPage = () => {
                   {errors.password}
                 </BootstrapForm.Control.Feedback>
               </FloatingLabel>
+
+              <FloatingLabel
+                controlId="confirmPassword"
+                label="Подтвердите пароль"
+                className="mb-3"
+              >
+                <BootstrapForm.Control
+                  type="password"
+                  name="confirmPassword"
+                  placeholder="Подтвердите пароль"
+                  isInvalid={
+                    !!errors.confirmPassword && touched.confirmPassword
+                  }
+                  {...getFieldProps('confirmPassword')}
+                />
+                <BootstrapForm.Control.Feedback type="invalid">
+                  {errors.confirmPassword}
+                </BootstrapForm.Control.Feedback>
+              </FloatingLabel>
               {loginError && <div style={{ color: 'red' }}>{loginError}</div>}
 
               <Button
@@ -94,13 +130,8 @@ export const LoginPage = () => {
                 disabled={isLoading}
                 variant="outline-primary"
               >
-                Войти
+                Зарегистрироваться
               </Button>
-              <div className="login-footer">
-                <p>
-                  Нет аккаунта? <Link to="/signup">Регистрация</Link>
-                </p>
-              </div>
             </Form>
           )}
         </Formik>
@@ -108,3 +139,4 @@ export const LoginPage = () => {
     </div>
   );
 };
+export { SignUpPage };
