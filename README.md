@@ -1,2 +1,3 @@
-### Hexlet tests and linter status:
-[![Actions Status](https://github.com/Shao-Lin/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Shao-Lin/frontend-project-12/actions)
+Ссылка на задеплоенное приложение
+
+https://slack-75wb.onrender.com

@@ -10,30 +10,32 @@ import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slice/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const SignUpPage = () => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
   const [login, { isLoading }] = useSignupUserMutation();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState();
 
   const SignupSchema = Yup.object().shape({
     username: Yup.string()
-      .required('Обязательное поле')
-      .min(3, 'От 3 до 20 символов')
-      .max(20, 'От 3 до 20 символов'),
+      .required(t('signupPage.errors.required_field'))
+      .min(3, t('signupPage.errors.interval_symbols'))
+      .max(20, t('signupPage.errors.interval_symbols')),
     password: Yup.string()
-      .required('Обязательное поле')
-      .min(6, 'Не менее 6 символов'),
+      .required(t('signupPage.errors.required_field'))
+      .min(6, t('signupPage.errors.limitation_password')),
     confirmPassword: Yup.string()
-      .required('Обязательное поле')
-      .min(6, 'Не менее 6 символов'),
+      .required(t('signupPage.errors.required_field'))
+      .min(6, t('signupPage.errors.limitation_password')),
   });
 
   const handleSignup = async (credentials) => {
     const { username, password, confirmPassword } = credentials;
     if (password !== confirmPassword) {
-      setLoginError('Пароли должны совпадать');
+      setLoginError(t('signupPage.errors.matching_passwords'));
       return;
     }
 
@@ -45,9 +47,9 @@ const SignUpPage = () => {
       navigate('/');
     } catch (err) {
       if (err.status === 409) {
-        setLoginError('Пользователь уже существует');
+        setLoginError(t('signupPage.errors.user_already_exists'));
       } else {
-        setLoginError('Произошла ошибка сервера');
+        setLoginError(t('signupPage.errors.server_error'));
       }
     }
   };
@@ -55,7 +57,7 @@ const SignUpPage = () => {
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1>Регистрация</h1>
+        <h1>{t('signupPage.registration')}</h1>
         <div className="logo-container">
           <img src={cookie} className="logo react" alt="React logo" />
         </div>
@@ -72,7 +74,7 @@ const SignUpPage = () => {
             <Form>
               <FloatingLabel
                 controlId="username"
-                label="Ваш ник"
+                label={t('signupPage.label_username')}
                 className="mb-3"
               >
                 <BootstrapForm.Control
@@ -90,7 +92,7 @@ const SignUpPage = () => {
 
               <FloatingLabel
                 controlId="password"
-                label="Пароль"
+                label={t('signupPage.label_password')}
                 className="mb-3"
               >
                 <BootstrapForm.Control
@@ -106,13 +108,13 @@ const SignUpPage = () => {
 
               <FloatingLabel
                 controlId="confirmPassword"
-                label="Подтвердите пароль"
+                label={t('signupPage.label_confirm_password')}
                 className="mb-3"
               >
                 <BootstrapForm.Control
                   type="password"
                   name="confirmPassword"
-                  placeholder="Подтвердите пароль"
+                  placeholder="confirmPassword"
                   isInvalid={
                     !!errors.confirmPassword && touched.confirmPassword
                   }
@@ -130,7 +132,7 @@ const SignUpPage = () => {
                 disabled={isLoading}
                 variant="outline-primary"
               >
-                Зарегистрироваться
+                {t('signupPage.button_registration')}
               </Button>
             </Form>
           )}

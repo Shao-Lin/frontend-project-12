@@ -3,8 +3,10 @@ import PropTypes from 'prop-types';
 import { useState, useRef, useEffect } from 'react';
 import { RemoveChannelModal } from '../modal/RemoveChannelModal';
 import { PatchChannelModal } from '../modal/PatchChannelModal';
+import { useTranslation } from 'react-i18next';
 
 const ChannelsItem = ({ name, isActive, id, changeChannel, removable }) => {
+  const { t } = useTranslation();
   const [showRemoveModal, setShowRemoveModal] = useState(false);
   const [showPatchModal, setShowPatchModal] = useState(false);
   const showRemove = () => {
@@ -39,6 +41,7 @@ const ChannelsItem = ({ name, isActive, id, changeChannel, removable }) => {
           <div className="channel-buttons">
             <button
               id={id}
+              name={name}
               className="channel-main-button"
               onClick={changeChannel}
             >
@@ -51,10 +54,10 @@ const ChannelsItem = ({ name, isActive, id, changeChannel, removable }) => {
               {menuVisible && (
                 <div className="channel-menu">
                   <button onClick={showPatch} className="channel-menu-item">
-                    Переименовать
+                    {t('chatPage.channels.rename')}
                   </button>
                   <button onClick={showRemove} className="channel-menu-item">
-                    Удалить
+                    {t('chatPage.channels.remove')}
                   </button>
                 </div>
               )}
@@ -63,6 +66,7 @@ const ChannelsItem = ({ name, isActive, id, changeChannel, removable }) => {
         ) : (
           <button
             id={id}
+            name={name}
             className="channel-full-button"
             onClick={changeChannel}
           >

@@ -4,22 +4,24 @@ import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import { Form as BootstrapForm } from 'react-bootstrap';
 import '../styles/loginPageStyle.css';
 import Button from 'react-bootstrap/Button';
-import mumia from '../assets/mumia.png';
+import mummy from '../assets/mummy.png';
 import { useLoginUserMutation } from '../api/authApi';
 import { useDispatch } from 'react-redux';
 import { setCredentials } from '../slice/authSlice';
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 export const LoginPage = () => {
+  const { t } = useTranslation();
   const dispatch = useDispatch();
   const [login, { isLoading }] = useLoginUserMutation();
   const navigate = useNavigate();
   const [loginError, setLoginError] = useState();
 
   const SignupSchema = Yup.object().shape({
-    username: Yup.string().required('Обязательное поле'),
-    password: Yup.string().required('Обязательное поле'),
+    username: Yup.string().required(t('loginPage.errors.required_field')),
+    password: Yup.string().required(t('loginPage.errors.required_field')),
   });
 
   const handleLogin = async (credentials) => {
@@ -30,18 +32,18 @@ export const LoginPage = () => {
       navigate('/');
     } catch (err) {
       if (err.status === 401) {
-        setLoginError('Неверные имя пользователя или пароль');
+        setLoginError(t('loginPage.errors.auth_error'));
       } else {
-        setLoginError('Произошла ошибка сервера');
+        setLoginError(t('loginPage.errors.server_error'));
       }
     }
   };
   return (
     <div className="login-container">
       <div className="login-box">
-        <h1>Войти</h1>
+        <h1>{t('loginPage.entry')}</h1>
         <div className="logo-container">
-          <img src={mumia} className="logo react" alt="React logo" />
+          <img src={mummy} className="logo react" alt="React logo" />
         </div>
         <Formik
           initialValues={{
@@ -55,7 +57,7 @@ export const LoginPage = () => {
             <Form>
               <FloatingLabel
                 controlId="username"
-                label="Ваш ник"
+                label={t('loginPage.label_username')}
                 className="mb-3"
               >
                 <BootstrapForm.Control
@@ -73,7 +75,7 @@ export const LoginPage = () => {
 
               <FloatingLabel
                 controlId="password"
-                label="Пароль"
+                label={t('loginPage.label_password')}
                 className="mb-3"
               >
                 <BootstrapForm.Control
@@ -94,11 +96,12 @@ export const LoginPage = () => {
                 disabled={isLoading}
                 variant="outline-primary"
               >
-                Войти
+                {t('loginPage.button_entry')}
               </Button>
               <div className="login-footer">
                 <p>
-                  Нет аккаунта? <Link to="/signup">Регистрация</Link>
+                  {t('loginPage.no_account')}
+                  <Link to="/signup">{t('loginPage.registration')}</Link>
                 </p>
               </div>
             </Form>

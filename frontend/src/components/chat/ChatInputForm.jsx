@@ -3,17 +3,19 @@ import '../../styles/chat/chatInputForm.css';
 import { useAddMessageMutation } from '../../api/messagesApi';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
-import { useFocus } from '../../hoc/useFocus'; // 👈 Импортируем контекст
+import { useFocus } from '../../hoc/useFocus';
+import { useTranslation } from 'react-i18next';
 
 const ChatInputForm = () => {
   const [addMessage, { isFetching }] = useAddMessageMutation();
   const channelId = useSelector((state) => state.channel.activeChannel);
+  const { t } = useTranslation();
   const username = localStorage.getItem('username');
-  const inputRef = useFocus(); // 👈 Получаем ref из контекста
+  const inputRef = useFocus();
 
   useEffect(() => {
     if (inputRef.current) {
-      inputRef.current.focus(); // 👈 Фокусируемся при монтировании
+      inputRef.current.focus();
     }
   }, [inputRef]);
 
@@ -28,7 +30,7 @@ const ChatInputForm = () => {
       }
       resetForm();
       if (inputRef.current) {
-        inputRef.current.focus(); // 👈 Фокусируемся по кнопке
+        inputRef.current.focus();
       }
     }
   };
@@ -41,9 +43,9 @@ const ChatInputForm = () => {
             {({ field }) => (
               <input
                 {...field}
-                ref={inputRef} // 👈 Используем ref из контекста
+                ref={inputRef}
                 type="text"
-                placeholder="Введите сообщение..."
+                placeholder={t('chatPage.chat.input_message')}
                 className="message-input"
                 autoFocus
               />

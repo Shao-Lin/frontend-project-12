@@ -1,0 +1,76 @@
+{
+  "loginPage": {
+    "errors": {
+      "required_field": "Обязательное поле",
+      "auth_error": "Неверные имя пользователя или пароль",
+      "server_error": "Произошла ошибка сервера"
+    },
+
+    "entry": "Вход",
+    "no_account": "Нет аккаунта? ",
+    "registration": "Регистрация",
+    "button_entry": "Войти",
+    "label_username": "Ваш ник",
+    "label_password": "Пароль"
+  },
+  "signupPage": {
+    "errors": {
+      "required_field": "Обязательное поле",
+      "interval_symbols": "От 3 до 20 символов",
+      "limitation_password": "Не менее 6 символов",
+      "matching_passwords": "Пароли должны совпадать",
+      "user_already_exists": "Пользователь уже существует",
+      "server_error": "Произошла ошибка сервера"
+    },
+    "registration": "Регистрация",
+    "label_username": "Ваш ник",
+    "label_password": "Пароль",
+    "label_confirm_password": "Подтвердите пароль",
+    "button_registration": "Зарегистрироваться"
+  },
+  "notFoundPage": {
+    "not_found": "Страница не найдена"
+  },
+  "chatPage": {
+    "channels": {
+      "channels": "Каналы",
+      "rename": "Переименовать",
+      "remove": "Удалить"
+    },
+    "chat": {
+      "input_message": "Ведите сообщение...",
+      "number_of_messages": "Количество сообщений: "
+    },
+    "modal": {
+      "errors": {
+        "required_field": "Обязательное поле",
+        "interval_symbols": "От 3 до 20 символов",
+        "channel_already_exists": "Такой канал уже существует"
+      },
+      "addChannel": "Добавить новый канал",
+      "label_name": "Введите название",
+      "btn_close": "Закрыть",
+      "btn_create": "Создать",
+
+      "renameChannel": "Переименовать канал",
+      "btn_cancel": "Отменить",
+      "btn_rename": "Переименовать",
+
+      "deleteChannel": "Удалить канал",
+      "sure": "Уверены?",
+      "btn_remove": "Удалить",
+
+      "add_notify": "Канал создан",
+      "rename_notify": "Канал переименован",
+      "remove_notify": "Канал удалён",
+
+      "error_add_notify": "Ошибка создания канала",
+      "error_rename_notify": "Ошибка переименования канала",
+      "error_remove_notify": "Ошибка удалёния канала"
+    }
+  },
+  "header": {
+    "chat": "Chat",
+    "exit": "Выход"
+  }
+}
