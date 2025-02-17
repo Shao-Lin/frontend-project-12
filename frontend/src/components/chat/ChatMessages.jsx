@@ -12,7 +12,7 @@ const ChatMessages = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    const socket = io('ws://localhost:5002');
+    const socket = io(`${window.location.origin}`);
 
     socket.on('newMessage', (message) => {
       setLiveMessages((prev) => [...prev, message]);
