@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const messagesApi = createApi({
   reducerPath: 'messagesApi',
   baseQuery: fetchBaseQuery({
-    baseUrl: 'http://localhost:5002',
+    baseUrl: '/api/v1',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
       if (token) {
@@ -15,11 +15,11 @@ export const messagesApi = createApi({
   tagTypes: ['Messages'],
   endpoints: (build) => ({
     getMessages: build.query({
-      query: () => '/api/v1/messages',
+      query: () => '/messages',
     }),
     addMessage: build.mutation({
       query: (body) => ({
-        url: '/api/v1/messages',
+        url: '/messages',
         method: 'POST',
         body,
       }),
