@@ -48,8 +48,7 @@ const AddChannelModal = ({ show, setShow }) => {
   const validationSchema = Yup.object({
     channelName: Yup.string()
       .min(3, t('chatPage.modal.errors.interval_symbols'))
-      .max(20, t('chatPage.modal.errors.interval_symbols'))
-      .required(t('chatPage.modal.errors.required_field')),
+      .max(20, t('chatPage.modal.errors.interval_symbols')),
   });
 
   const addChannel = async (values, { resetForm, setFieldError }) => {
